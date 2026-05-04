@@ -517,31 +517,33 @@ void main() {
   print(doubleValue.runtimeType); // Output: double
 }
       </pre>
+  <img src="tugas711.png" alt="gambar" style="max-width:100%; margin-top:10px;">     
     </div>
   </div>
 
   <!-- ==================== GENERIC PADA ITERABLE ==================== -->
   <div class="card">
     <div class="card-header">
-      <h2>📚 Generic dengan Interface/Class</h2>
+      <h2>📚 Pembatasan Tipe pada Interface dan Class</h2>
     </div>
     <div class="card-body">
       <div class="code-title"><span class="tag">✅ Contoh Benar</span></div>
       <pre>
-void printIterable&lt;T extends Iterable&lt;dynamic&gt;&gt;(T iterable) {
+void printIterable<T extends Iterable<dynamic>>(T iterable) {
   for (var item in iterable) {
     print(item);
   }
 }
 
 void main() {
-  printIterable&lt;List&lt;int&gt;&gt;([1, 2, 3]);
+  printIterable<List<int>>([1, 2, 3]);
   // Output: 1, 2, 3
 
-  printIterable&lt;Set&lt;String&gt;&gt;({'apple', 'banana'});
+  printIterable<Set<String>>({'apple', 'banana'});
   // Output: apple, banana
 }
       </pre>
+ <img src="tugas712.png" alt="gambar" style="max-width:100%; margin-top:10px;">         
       <div class="code-title"><span class="tag tag-error">❌ Contoh ERROR</span></div>
       <pre>
 // ❌ ERROR: int bukan turunan dari Iterable
@@ -550,6 +552,7 @@ printIterable&lt;int&gt;(10);
 // ERROR: The type 'int' is not a subtype of 'Iterable&lt;dynamic&gt;'
 */
       </pre>
+<img src="tugas713.png" alt="gambar" style="max-width:100%; margin-top:10px;">    
     </div>
   </div>
 
