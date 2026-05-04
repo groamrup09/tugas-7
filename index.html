@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SESI 6: Generic Dasar - Azriel Miracle Yuandre</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      padding: 40px 20px;
+      line-height: 1.6;
+      color: #0f172a;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #1e293b, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: #475569;
+      margin-top: 10px;
+    }
+
+    .badge {
+      background: #2563eb;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      display: inline-block;
+      margin: 10px 5px 0 0;
+    }
+
+    /* Card */
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      background: #f8fafc;
+      padding: 15px 25px;
+      border-bottom: 2px solid #2563eb;
+    }
+
+    .card-header h2 {
+      color: #1e293b;
+      font-size: 1.5rem;
+    }
+
+    .card-header h3 {
+      color: #475569;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    .card-body {
+      padding: 25px;
+    }
+
+    /* Kode */
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 20px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 15px 0;
+    }
+
+    .code-title {
+      font-weight: 600;
+      color: #2563eb;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .code-title .tag {
+      background: #2563eb;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+    }
+
+    .code-title .tag-error {
+      background: #dc2626;
+    }
+
+    /* Error card */
+    .error-card {
+      border-left: 4px solid #dc2626;
+      background: #fef2f2;
+    }
+
+    .error-card .card-header {
+      background: #fef2f2;
+      border-bottom-color: #dc2626;
+    }
+
+    /* Info box */
+    .info-box {
+      background: #e0f2fe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin: 15px 0;
+      border-left: 4px solid #0284c7;
+    }
+
+    .info-box strong {
+      color: #0369a1;
+    }
+
+    /* Tabel */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 600;
+    }
+
+    .check {
+      color: #16a34a;
+      font-weight: bold;
+    }
+
+    .cross {
+      color: #dc2626;
+      font-weight: bold;
+    }
+
+    /* Button */
+    .btn {
+      background: #1e293b;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: #0f172a;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #64748b;
+      border-top: 1px solid #cbd5e1;
+      margin-top: 40px;
+    }
+
+    hr {
+      margin: 20px 0;
+      border: none;
+      height: 1px;
+      background: #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- HEADER -->
+  <div class="header">
+    <h1>📦 SESI 6: Generic Dasar</h1>
+    <p class="subtitle">Type-Safe • Code Reusability • Compile-Time Checking</p>
+    <div>
+      <span class="badge">Azriel Miracle Yuandre</span>
+      <span class="badge">251410024</span>
+      <span class="badge">SI2A</span>
+    </div>
+  </div>
+
+  <!-- ==================== REVIEW SESI 5 ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>📌 Review Sesi 5 – Class Modifiers</h2>
+    </div>
+    <div class="card-body">
+      <div class="info-box">
+        <strong>🔹 sealed</strong> → hierarki tertutup, pattern matching<br>
+        <strong>🔹 base</strong> → hanya bisa di-extend, tidak di-implement dari luar<br>
+        <strong>🔹 final</strong> → tidak bisa di-extend/di-implement dari luar
+      </div>
+      <div class="code-title"><span class="tag">Contoh Cepat</span></div>
+      <pre>
+sealed class Result {}
+class Success extends Result {}
+class Failure extends Result {}
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== PENGANTAR GENERIC ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>🎯 Pengantar Generic</h2>
+    </div>
+    <div class="card-body">
+      <p><strong>Apa itu Generic?</strong> Fitur untuk membuat kode yang bekerja dengan berbagai tipe data.</p>
+      <p><strong>Analog:</strong> Kotak penyimpanan yang bisa menampung apa saja, tapi dengan label tipe.</p>
+      <div class="info-box">
+        <strong>📌 Manfaat Generic:</strong><br>
+        ✅ Type safety (keamanan tipe)<br>
+        ✅ Code reusability (penggunaan ulang)<br>
+        ✅ Compile-time checking
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MASALAH TANPA GENERIC ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>⚠️ Masalah Tanpa Generic</h2>
+    </div>
+    <div class="card-body">
+      <div class="code-title"><span class="tag">❌ Kode Bermasalah</span></div>
+      <pre>
+class Box {
+  dynamic data; // Bisa apa saja - TIDAK AMAN!
+  Box(this.data);
+}
+
+void main() {
+  var box = Box(42);
+  int value = box.data; // Runtime error jika bukan int!
+  print(value);
+}
+      </pre>
+      <div class="info-box">
+        <strong>❌ Bahaya:</strong> Tidak ada jaminan tipe data, bisa menyebabkan runtime error.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SINTAKS GENERIC DASAR ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>📝 Sintaks Generic Dasar</h2>
+    </div>
+    <div class="card-body">
+      <div class="info-box">
+        <strong>Type parameter:</strong> &lt;T&gt;, &lt;E&gt;, &lt;K, V&gt;<br>
+        <strong>Konvensi:</strong><br>
+        • T = Type<br>
+        • E = Element (collection)<br>
+        • K = Key, V = Value<br>
+        • R = Return type
+      </div>
+      <div class="code-title"><span class="tag">✅ Contoh Benar</span></div>
+      <pre>
+class MyClass&lt;T&gt; {
+  T data;
+  MyClass(this.data);
+  T getData() => data;
+}
+
+T myFunc&lt;T&gt;(T value) => value;
+
+void main() {
+  // Class generic
+  var myIntClass = MyClass&lt;int&gt;(10);
+  var myStringClass = MyClass&lt;String&gt;("test");
+  print(myIntClass.getData());   // Output: 10
+  print(myStringClass.getData()); // Output: test
+
+  // Fungsi generic
+  var intValue = myFunc&lt;int&gt;(100);
+  var stringValue = myFunc&lt;String&gt;("hello");
+  print(intValue);   // Output: 100
+  print(stringValue); // Output: hello
+}
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== KELAS BOX<T> ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>📦 Kelas Box&lt;T&gt;</h2>
+    </div>
+    <div class="card-body">
+      <div class="code-title"><span class="tag">✅ Contoh Implementasi</span></div>
+      <pre>
+class Box&lt;T&gt; {
+  T? _value;
+  Box(this._value);
+  T? get value => _value;
+  void setValue(T value) { _value = value; }
+}
+
+void main() {
+  // Box dengan tipe int
+  var intBox = Box&lt;int&gt;(10);
+  print('Int Box: ${intBox.value}'); // Output: Int Box: 10
+  intBox.setValue(20);
+  print('After set: ${intBox.value}'); // Output: After set: 20
+
+  // Box dengan tipe String
+  var stringBox = Box&lt;String&gt;("Hello, Generic!");
+  print('String Box: ${stringBox.value}'); // Output: String Box: Hello, Generic!
+  stringBox.setValue('Hello World');
+  print('After set: ${stringBox.value}'); // Output: After set: Hello World
+
+  // Box dengan tipe double
+  var doubleBox = Box&lt;double&gt;(3.14);
+  print('Double Box: ${doubleBox.value}'); // Output: Double Box: 3.14
+}
+      </pre>
+    </div>
+    <div class="card-body error-card" style="border-left: 4px solid #dc2626; margin-top: 0;">
+      <div class="code-title"><span class="tag tag-error">❌ Contoh ERROR</span></div>
+      <pre>
+// ❌ ERROR: Mencoba memasukkan tipe yang salah
+/*
+var wrongBox = Box&lt;int&gt;("bukan angka");
+// ERROR: The argument type 'String' can't be assigned to parameter type 'int'
+*/
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== KELAS PAIR<K, V> ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>🔑 Kelas Pair&lt;K, V&gt; (Multi Type Parameters)</h2>
+    </div>
+    <div class="card-body">
+      <div class="code-title"><span class="tag">✅ Contoh Benar</span></div>
+      <pre>
+class Pair&lt;K, V&gt; {
+  K key;
+  V value;
+  Pair(this.key, this.value);
+  void printPair() => print('Key: $key, Value: $value');
+}
+
+void main() {
+  // Pair String-int
+  var pair1 = Pair&lt;String, int&gt;('age', 30);
+  pair1.printPair(); // Output: Key: age, Value: 30
+
+  // Pair String-String
+  var pair2 = Pair&lt;String, String&gt;('name', 'Alice');
+  pair2.printPair(); // Output: Key: name, Value: Alice
+
+  // Pair int-double
+  var pair3 = Pair&lt;int, double&gt;(1, 2.71);
+  pair3.printPair(); // Output: Key: 1, Value: 2.71
+}
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== FUNGSI GENERIC ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>⚙️ Fungsi Generic combine&lt;T, U&gt;</h2>
+    </div>
+    <div class="card-body">
+      <div class="code-title"><span class="tag">✅ Contoh Benar</span></div>
+      <pre>
+String combine&lt;T, U&gt;(T value1, U value2) {
+  return '$value1, $value2';
+}
+
+void main() {
+  var result1 = combine&lt;String, int&gt;("Number is ", 10);
+  print(result1); // Output: Number is , 10
+
+  var result2 = combine&lt;int, double&gt;(10, 20.5);
+  print(result2); // Output: 10, 20.5
+}
+      </pre>
+      <div class="code-title"><span class="tag tag-error">❌ Contoh ERROR</span></div>
+      <pre>
+// ❌ ERROR: Tipe tidak kompatibel dengan fungsi
+/*
+var result3 = combine&lt;int, String&gt;(10, 20);
+// Bisa, tapi kurang tepat karena U seharusnya String tapi diisi int
+*/
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== GENERIC DENGAN EXTENDS ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>🔒 Generic dengan Extends (Constraints)</h2>
+    </div>
+    <div class="card-body">
+      <div class="info-box">
+        <strong>📌 Keyword extends</strong> → membatasi tipe data yang dapat digunakan.
+      </div>
+      <div class="code-title"><span class="tag">✅ Contoh Benar</span></div>
+      <pre>
+class NumberBox&lt;T extends num&gt; {
+  T value;
+  NumberBox(this.value);
+  T getValue() => value;
+}
+
+void main() {
+  // ✅ Valid - int dan double adalah turunan num
+  var intBox = NumberBox&lt;int&gt;(10);
+  print("int box: ${intBox.getValue()}"); // Output: int box: 10
+
+  var doubleBox = NumberBox&lt;double&gt;(3.14);
+  print("double box: ${doubleBox.getValue()}"); // Output: double box: 3.14
+}
+      </pre>
+      <div class="code-title"><span class="tag tag-error">❌ Contoh ERROR</span></div>
+      <pre>
+// ❌ ERROR: String bukan turunan dari num
+/*
+var stringBox = NumberBox&lt;String&gt;("test");
+// ERROR: The type 'String' is not a subtype of 'num'
+*/
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== TYPE INFERENCE ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>🔍 Type Inference (Inferensi Tipe)</h2>
+    </div>
+    <div class="card-body">
+      <div class="code-title"><span class="tag">✅ Contoh Benar</span></div>
+      <pre>
+T myFunc&lt;T&gt;(T value) => value;
+
+void main() {
+  // Dart menginferensi T secara otomatis
+  var intValue = myFunc(10);
+  print(intValue.runtimeType); // Output: int
+
+  var stringValue = myFunc("test");
+  print(stringValue.runtimeType); // Output: String
+
+  var doubleValue = myFunc(3.14);
+  print(doubleValue.runtimeType); // Output: double
+}
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== GENERIC PADA ITERABLE ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>📚 Generic dengan Interface/Class</h2>
+    </div>
+    <div class="card-body">
+      <div class="code-title"><span class="tag">✅ Contoh Benar</span></div>
+      <pre>
+void printIterable&lt;T extends Iterable&lt;dynamic&gt;&gt;(T iterable) {
+  for (var item in iterable) {
+    print(item);
+  }
+}
+
+void main() {
+  printIterable&lt;List&lt;int&gt;&gt;([1, 2, 3]);
+  // Output: 1, 2, 3
+
+  printIterable&lt;Set&lt;String&gt;&gt;({'apple', 'banana'});
+  // Output: apple, banana
+}
+      </pre>
+      <div class="code-title"><span class="tag tag-error">❌ Contoh ERROR</span></div>
+      <pre>
+// ❌ ERROR: int bukan turunan dari Iterable
+/*
+printIterable&lt;int&gt;(10);
+// ERROR: The type 'int' is not a subtype of 'Iterable&lt;dynamic&gt;'
+*/
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== PERBANDINGAN GENERIC vs DYNAMIC vs OBJECT ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>📊 Generic vs Dynamic vs Object</h2>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr>
+          <th>Aspect</th>
+          <th>Generic &lt;T&gt;</th>
+          <th>dynamic</th>
+          <th>Object</th>
+        </tr>
+        <tr>
+          <td>Type Safety</td>
+          <td class="check">✅ Compile-time</td>
+          <td class="cross">❌ Runtime</td>
+          <td class="check">✅ Compile-time</td>
+        </tr>
+        <tr>
+          <td>Flexibility</td>
+          <td>Terbatas (sesuai T)</td>
+          <td>Sangat fleksibel</td>
+          <td>Terbatas</td>
+        </tr>
+        <tr>
+          <td>Performance</td>
+          <td class="check">✅ Optimal</td>
+          <td class="cross">❌ Overhead</td>
+          <td class="check">✅ Optimal</td>
+        </tr>
+        <tr>
+          <td>Casting</td>
+          <td>Tidak perlu</td>
+          <td>Tidak perlu</td>
+          <td>Perlu casting</td>
+        </tr>
+      </table>
+      <div class="code-title"><span class="tag">Contoh Perbedaan</span></div>
+      <pre>
+Box&lt;int&gt; box1 = Box&lt;int&gt;(42); // Generic: aman
+
+dynamic box2 = 42;   // Dynamic: tidak aman, bisa diubah jadi String
+
+Object box3 = 42;    // Object: perlu casting
+int value = box3 as int;
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== KELAS CACHE<T> ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>🗄️ Studi Kasus: Class Cache&lt;T&gt;</h2>
+    </div>
+    <div class="card-body">
+      <div class="code-title"><span class="tag">✅ Implementasi Cache Generic</span></div>
+      <pre>
+class Cache&lt;T&gt; {
+  final Map&lt;String, T&gt; _storage = {};
+
+  void set(String key, T value) {
+    _storage[key] = value;
+  }
+
+  T? get(String key) {
+    return _storage[key];
+  }
+
+  void remove(String key) {
+    _storage.remove(key);
+  }
+
+  void printAll() {
+    _storage.forEach((key, value) => print('$key: $value'));
+  }
+}
+
+void main() {
+  // Cache untuk String
+  var userCache = Cache&lt;String&gt;();
+  userCache.set('name', 'Alice');
+  userCache.set('email', 'alice@example.com');
+  print('Name: ${userCache.get('name')}'); // Output: Name: Alice
+  userCache.printAll();
+
+  // Cache untuk int
+  var numberCache = Cache&lt;int&gt;();
+  numberCache.set('age', 25);
+  print('Age: ${numberCache.get('age')}'); // Output: Age: 25
+}
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== LATIHAN SOAL ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>📝 Latihan Soal</h2>
+    </div>
+    <div class="card-body">
+      <div class="info-box">
+        <strong>💻 Soal 1:</strong> Buat class <code>Repository&lt;T&gt;</code> dengan method:
+        <code>save(T item)</code>, <code>T getById(int id)</code>, <code>List&lt;T&gt; getAll()</code>
+      </div>
+      <div class="code-title"><span class="tag">✅ Jawaban</span></div>
+      <pre>
+class Repository&lt;T&gt; {
+  final Map&lt;int, T&gt; _data = {};
+  int _nextId = 1;
+
+  void save(T item) {
+    _data[_nextId++] = item;
+    print('Saved: $item');
+  }
+
+  T? getById(int id) {
+    return _data[id];
+  }
+
+  List&lt;T&gt; getAll() {
+    return _data.values.toList();
+  }
+
+  void printAll() {
+    _data.forEach((id, item) => print('ID $id: $item'));
+  }
+}
+
+void main() {
+  var userRepo = Repository&lt;String&gt;();
+  userRepo.save("Alice");
+  userRepo.save("Bob");
+  print("User ID 1: ${userRepo.getById(1)}");
+  print("All users: ${userRepo.getAll()}");
+}
+      </pre>
+
+      <hr>
+
+      <div class="info-box">
+        <strong>💻 Soal 2:</strong> Fungsi generic <code>swap&lt;T&gt;(List&lt;T&gt; list, int i, int j)</code>
+      </div>
+      <div class="code-title"><span class="tag">✅ Jawaban</span></div>
+      <pre>
+void swap&lt;T&gt;(List&lt;T&gt; list, int i, int j) {
+  if (i == j) return;
+  T temp = list[i];
+  list[i] = list[j];
+  list[j] = temp;
+}
+
+void main() {
+  var numbers = [1, 2, 3, 4, 5];
+  print("Before swap: $numbers");
+  swap&lt;int&gt;(numbers, 1, 3);
+  print("After swap: $numbers"); // Output: [1, 4, 3, 2, 5]
+}
+      </pre>
+
+      <hr>
+
+      <div class="info-box">
+        <strong>💻 Soal 3:</strong> Class <code>Triple&lt;A, B, C&gt;</code> dengan 3 field
+      </div>
+      <div class="code-title"><span class="tag">✅ Jawaban</span></div>
+      <pre>
+class Triple&lt;A, B, C&gt; {
+  A first;
+  B second;
+  C third;
+
+  Triple(this.first, this.second, this.third);
+
+  void printTriple() {
+    print('($first, $second, $third)');
+  }
+}
+
+void main() {
+  var triple1 = Triple&lt;String, int, bool&gt;("Alice", 25, true);
+  triple1.printTriple(); // Output: (Alice, 25, true)
+
+  var triple2 = Triple&lt;int, double, String&gt;(1, 3.14, "Pi");
+  triple2.printTriple(); // Output: (1, 3.14, Pi)
+}
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== CHALLENGE ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>🏆 Challenge: Sistem Repository Generic</h2>
+    </div>
+    <div class="card-body">
+      <div class="code-title"><span class="tag">✅ Solusi</span></div>
+      <pre>
+class Product {
+  final int id;
+  final String name;
+  final double price;
+  Product(this.id, this.name, this.price);
+  @override
+  String toString() => 'Product($id, $name, $price)';
+}
+
+class User {
+  final int id;
+  final String username;
+  User(this.id, this.username);
+  @override
+  String toString() => 'User($id, $username)';
+}
+
+class GenericRepository&lt;T&gt; {
+  final Map&lt;int, T&gt; _items = {};
+  int _nextId = 1;
+
+  T? create(T item) {
+    _items[_nextId] = item;
+    return item;
+  }
+
+  T? read(int id) {
+    return _items[id];
+  }
+
+  T? update(int id, T item) {
+    if (_items.containsKey(id)) {
+      _items[id] = item;
+      return item;
+    }
+    return null;
+  }
+
+  bool delete(int id) {
+    return _items.remove(id) != null;
+  }
+
+  List&lt;T&gt; readAll() {
+    return _items.values.toList();
+  }
+
+  void printAll() {
+    _items.forEach((id, item) => print('ID $id: $item'));
+  }
+}
+
+void main() {
+  var productRepo = GenericRepository&lt;Product&gt;();
+  productRepo.create(Product(1, 'Laptop', 15000000));
+  productRepo.create(Product(2, 'Mouse', 250000));
+  print('Products: ${productRepo.readAll()}');
+
+  var userRepo = GenericRepository&lt;User&gt;();
+  userRepo.create(User(1, 'alice'));
+  userRepo.create(User(2, 'bob'));
+  print('Users: ${userRepo.readAll()}');
+}
+      </pre>
+    </div>
+  </div>
+
+  <!-- ==================== RINGKASAN ==================== -->
+  <div class="card">
+    <div class="card-header">
+      <h2>📖 Ringkasan</h2>
+    </div>
+    <div class="card-body">
+      <div class="info-box">
+        <strong>🎯 Poin Penting:</strong><br>
+        1. Generic membuat kode <strong>type-safe</strong> dan <strong>reusable</strong><br>
+        2. Bisa digunakan di <strong>class, fungsi, collections</strong><br>
+        3. <strong>Type inference</strong> memudahkan penggunaan<br>
+        4. <strong>Constraints (extends)</strong> membatasi tipe yang diperbolehkan
+      </div>
+      <div class="info-box">
+        <strong>📌 Best Practice:</strong><br>
+        • Gunakan generic untuk menghindari <code>dynamic</code><br>
+        • Gunakan <code>extends</code> untuk membatasi tipe<br>
+        • Manfaatkan type inference untuk kode lebih bersih
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2024 - Azriel Miracle Yuandre (251410024) | SI2A</p>
+    <p>Dart Generic - Type Safety & Code Reusability</p>
+  </div>
+</div>
+</body>
+</html>
