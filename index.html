@@ -594,15 +594,6 @@ printIterable&lt;int&gt;(10);
           <td>Perlu casting</td>
         </tr>
       </table>
-      <div class="code-title"><span class="tag">Contoh Perbedaan</span></div>
-      <pre>
-Box&lt;int&gt; box1 = Box&lt;int&gt;(42); // Generic: aman
-
-dynamic box2 = 42;   // Dynamic: tidak aman, bisa diubah jadi String
-
-Object box3 = 42;    // Object: perlu casting
-int value = box3 as int;
-      </pre>
     </div>
   </div>
 
