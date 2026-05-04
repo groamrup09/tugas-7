@@ -275,7 +275,7 @@ class Box {
 }
 
 void main() {
-  var box = Box(42);
+  var box = Box("INI CONTOH SALAH");
   int value = box.data; // Runtime error jika bukan int!
   print(value);
 }
@@ -283,10 +283,31 @@ void main() {
       <div class="info-box">
         <strong>❌ Bahaya:</strong> Tidak ada jaminan tipe data, bisa menyebabkan runtime error.
         <strong> CONTOH ERROR</strong>
-        <img src="punyaaku1.png" alt="gambar" style="max-width:100%; margin-top:10px;">
-        <p>
+        <img src="tugas71p.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+        <p>  
         <strong>✅CONTOH BENAR</strong>
-         <img src="tugas72.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+         <pre>
+// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A  
+class Box<T> {
+  T data;
+  Box(this.data);
+}
+
+void main() {
+  var intBox = Box<int>(42);           // T = int
+  var stringBox = Box<String>('Hello'); // T = String
+  
+  int value = intBox.data;              // ✅ Aman, pasti int
+  // stringBox.data = 123;              // ❌ ERROR compile-time (tidak bisa)
+  
+  print(intBox.data);   // Output: 42
+  print(stringBox.data); // Output: Hello
+  print(value);          // Output: 42
+}
+         </pre> 
+         <img src="tugas72p.png" alt="gambar" style="max-width:100%; margin-top:10px;">
           </p>
       </div>
     </div>
