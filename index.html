@@ -556,6 +556,118 @@ printIterable&lt;int&gt;(10);
     </div>
   </div>
 
+
+ <div class="card">
+    <div class="card-header">
+      <h2>Praktik 1 – Generic Class & Fungsi</h2>
+    </div>
+    <div class="card-body">
+      <pre>
+// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A        
+
+// 1. Class Repository<T>
+class Repository<T> {
+  final Map<int, T> _storage = {};
+  int _nextId = 1;
+
+  int save(T item) {
+    int id = _nextId++;
+    _storage[id] = item;
+    print('✅ Saved: ID $id → $item');
+    return id;
+  }
+
+  T? getById(int id) {
+    return _storage[id];
+  }
+
+  List<T> getAll() {
+    return _storage.values.toList();
+  }
+
+  void printAll() {
+    if (_storage.isEmpty) {
+      print('📭 Repository kosong');
+      return;
+    }
+    print('📦 Isi Repository:');
+    _storage.forEach((id, item) => print('   ID $id: $item'));
+  }
+}
+
+// 2. Fungsi swap<T>
+void swap<T>(List<T> list, int i, int j) {
+  if (i < 0 || i >= list.length || j < 0 || j >= list.length) {
+    print('❌ Error: Indeks tidak valid!');
+    return;
+  }
+  if (i == j) return;
+  
+  T temp = list[i];
+  list[i] = list[j];
+  list[j] = temp;
+}
+
+// 3. Class Triple<A, B, C>
+class Triple<A, B, C> {
+  A first;
+  B second;
+  C third;
+
+  Triple(this.first, this.second, this.third);
+
+  A getFirst() => first;
+  B getSecond() => second;
+  C getThird() => third;
+
+  void setFirst(A value) => first = value;
+  void setSecond(B value) => second = value;
+  void setThird(C value) => third = value;
+
+  void printTriple() {
+    print('($first, $second, $third)');
+  }
+
+  List<dynamic> toList() => [first, second, third];
+}
+
+// 4. Fungsi main() 
+void main() {
+  print('=' * 50);
+  print('PRAKTIK 1 - GENERIC CLASS & FUNGSI');
+  print('=' * 50);
+
+  // Demo Repository<String>
+  print('\n1. REPOSITORY<String>');
+  print('-' * 40);
+  var stringRepo = Repository<String>();
+  stringRepo.save('PRABOWO');
+  stringRepo.save('MULYONO');
+  stringRepo.printAll();
+
+  // Demo swap
+  print('\n2. FUNGSI SWAP<T>');
+  print('-' * 40);
+  var numbers = [10, 20, 30, 40, 50];
+  print('Before: $numbers');
+  swap<int>(numbers, 1, 3);
+  print('After:  $numbers');
+
+  // Demo Triple
+  print('\n3. TRIPLE<A, B, C>');
+  print('-' * 40);
+  var triple = Triple<String, int, bool>('PRABOWO', 25, true);
+  triple.printTriple();
+}
+      </pre>
+        <img src="tugas714.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+          </p>
+      </div>
+    </div>
+  </div>   
+
   <!-- ==================== PERBANDINGAN GENERIC vs DYNAMIC vs OBJECT ==================== -->
   <div class="card">
     <div class="card-header">
@@ -597,6 +709,8 @@ printIterable&lt;int&gt;(10);
     </div>
   </div>
 
+    
+
   <!-- ==================== KELAS CACHE<T> ==================== -->
   <div class="card">
     <div class="card-header">
@@ -605,8 +719,8 @@ printIterable&lt;int&gt;(10);
     <div class="card-body">
       <div class="code-title"><span class="tag">✅ Implementasi Cache Generic</span></div>
       <pre>
-class Cache&lt;T&gt; {
-  final Map&lt;String, T&gt; _storage = {};
+class Cache<T> {
+  final Map<String, T> _storage = {};
 
   void set(String key, T value) {
     _storage[key] = value;
@@ -619,26 +733,30 @@ class Cache&lt;T&gt; {
   void remove(String key) {
     _storage.remove(key);
   }
+}
+class Product {
+  String name;
+  double price;
 
-  void printAll() {
-    _storage.forEach((key, value) => print('$key: $value'));
+  Product(this.name, this.price);
+
+  @override
+  String toString() {
+    return 'Product(name: $name, price: $price)';
   }
 }
 
 void main() {
-  // Cache untuk String
-  var userCache = Cache&lt;String&gt;();
+  var userCache = Cache<String>();
   userCache.set('name', 'Alice');
-  userCache.set('email', 'alice@example.com');
-  print('Name: ${userCache.get('name')}'); // Output: Name: Alice
-  userCache.printAll();
+  print(userCache.get('name')); 
 
-  // Cache untuk int
-  var numberCache = Cache&lt;int&gt;();
-  numberCache.set('age', 25);
-  print('Age: ${numberCache.get('age')}'); // Output: Age: 25
+  var productCache = Cache<Product>();
+  productCache.set('p1', Product('Laptop', 1000));
+  print(productCache.get('p1'));
 }
       </pre>
+<img src="tugas715.png" alt="gambar" style="max-width:100%; margin-top:10px;">    
     </div>
   </div>
 
